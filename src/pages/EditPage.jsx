@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
+import apiUrl from '../components/Until'
 
 const EditPage = () => {
   let { id } = useParams();
@@ -18,7 +19,7 @@ const EditPage = () => {
   const getProduct = async () => {
     setIsLoading(true);
     try {
-      const response = await axios.get(`http://localhost:3000/api/products/${id}`);
+      const response = await axios.get(`${apiUrl}/api/products/${id}`);
       setProduct({
         name: response.data.name,
         quantity: response.data.quantity,
@@ -35,7 +36,7 @@ const EditPage = () => {
   const updateProduct = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`http://localhost:3000/api/products/${id}`, product);
+      await axios.put(`${apiUrl}/api/products/${id}`, product);
       toast.success("Updated a product successfully");
       navigate("/");
     } catch (error) {

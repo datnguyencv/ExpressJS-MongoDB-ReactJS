@@ -3,6 +3,8 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
+import apiUrl from '../components/Until'
+
 
 const Product = ({ product, getProducts }) => {
   const deleteProduct = async (id) => {
@@ -14,7 +16,7 @@ const Product = ({ product, getProducts }) => {
 
     if (result.isConfirmed) {
       try {
-        await axios.delete(`http://localhost:3000/api/products/${id}`);
+        await axios.delete(`${apiUrl}/api/products/${id}`);
         toast.success("Delete a Product Successfully");
         getProducts();
       } catch (error) {

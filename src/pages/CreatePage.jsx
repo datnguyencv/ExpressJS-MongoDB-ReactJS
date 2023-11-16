@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import apiUrl from '../components/Until'
 
 
 const CreatePage = () => {
@@ -21,7 +22,7 @@ const CreatePage = () => {
         }
         try {
             setIsLoading(true);
-            const response = await axios.post("http://localhost:3000/api/products", {name: name, quantity: quantity, price: price, image: image});
+            const response = await axios.post(`${apiUrl}/api/products`, {name: name, quantity: quantity, price: price, image: image});
             toast.success(`Save ${response.data.name} Successfully`);
             setIsLoading(false);
             navigate("/");
