@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import Product from "../components/Product";
+import apiUrl from '../components/Until'
 
 const HomePage = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -11,7 +12,7 @@ const HomePage = () => {
   const getProducts = async () => {
     try {
       setIsLoading(true);
-      const response = await axios.get("http://localhost:3000/api/products");
+      const response = await axios.get(`${apiUrl}/api/products`);
       console.log(response.data)
       setProducts(response.data);
       setIsLoading(false);
